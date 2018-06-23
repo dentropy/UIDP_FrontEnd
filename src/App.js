@@ -62,14 +62,15 @@ class App extends Component {
         UIDPInstance = instance
 
         // Stores a given value, 5 by default.
-        return UIDPInstance.set(5, {from: accounts[0]})
+        return UIDPInstance.publicKeyToIdentity(0, {from: accounts[0]})
       }).then((result) => {
+        console.log(result)
         // Get the value from the contract to prove it worked.
-        return UIDPInstance.get.call(accounts[0])
-      }).then((result) => {
+        //return UIDPInstance.get.call(accounts[0])
+      })/*.then((result) => {
         // Update state with the result.
         return this.setState({ storageValue: result.c[0] })
-      })
+      })*/
     })
   }
 
@@ -128,6 +129,7 @@ class App extends Component {
             </div>
           </div>
         </main> */}
+        {this.state.storageValue}
       </div>
       </MuiThemeProvider>
     );

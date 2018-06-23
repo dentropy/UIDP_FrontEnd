@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import SimpleStorageContract from '../build/contracts/SimpleStorage.json'
 import getWeb3 from './utils/getWeb3'
-
+import AppBarExampleIcon from './AppBarExampleIcon';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import TabsSwipeable from './TabsSwipeable';
+import TabsControlled from './TabsControlled';
+import ListSimple from './ListSimple';
 import './css/oswald.css'
 import './css/open-sans.css'
 import './css/pure-min.css'
@@ -69,8 +73,12 @@ class App extends Component {
 
   render() {
     return (
+      <MuiThemeProvider>
       <div className="App">
-        <nav className="navbar pure-menu pure-menu-horizontal">
+        <AppBarExampleIcon />
+        <ListSimple />
+        <TabsSwipeable />
+        {/* <nav className="navbar pure-menu pure-menu-horizontal">
             <a href="#" className="pure-menu-heading pure-menu-link">Truffle Box</a>
         </nav>
 
@@ -81,12 +89,13 @@ class App extends Component {
               <p>Your Truffle Box is installed and ready.</p>
               <h2>Smart Contract Example</h2>
               <p>If your contracts compiled and migrated successfully, below will show a stored value of 5 (by default).</p>
-              <p>Try changing the value stored on <strong>line 59</strong> of App.js.</p>
+              <p>Try changing the alue stored on <strong>line 59</strong> of App.js.</p>
               <p>The stored value is: {this.state.storageValue}</p>
             </div>
           </div>
-        </main>
+        </main> */}
       </div>
+      </MuiThemeProvider>
     );
   }
 }

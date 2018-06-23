@@ -52,7 +52,8 @@
     "dotenv": "^2.0.0",
     "material-ui": "^0.20.1",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-swipeable-views": "^0.12.14"
   },
   "scripts": {
     "start": "node scripts/start.js",

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import SimpleStorageContract from '../build/contracts/SimpleStorage.json'
-import IdentityContract from '../build/contracts/Identity.json'
 import getWeb3 from './utils/getWeb3'
 import AppBarExampleIcon from './AppBarExampleIcon';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -33,43 +32,10 @@ class App extends Component {
       })
 
       // Instantiate contract once web3 provided.
-      //this.instantiateContract()
-      this.instantiateIdentities()
+      this.instantiateContract()
     })
     .catch(() => {
       console.log('Error finding web3.')
-    })
-  }
-
-  instantiateIdentities() {
-    /*
-     * SMART CONTRACT EXAMPLE
-     *
-     * Normally these functions would be called in the context of a
-     * state management library, but for convenience I've placed them here.
-     */
-
-    const contract = require('truffle-contract')
-    const UIDP = contract(IdentityContract)
-    UIDP.setProvider(this.state.web3.currentProvider)
-
-    // Declaring this for later so we can chain functions on SimpleStorage.
-    var UIDPInstance
-
-    // Get accounts.
-    this.state.web3.eth.getAccounts((error, accounts) => {
-      simpleStorage.deployed().then((instance) => {
-        UIDPInstance = instance
-
-        // Stores a given value, 5 by default.
-        return UIDPInstance.set(5, {from: accounts[0]})
-      }).then((result) => {
-        // Get the value from the contract to prove it worked.
-        return UIDPInstance.get.call(accounts[0])
-      }).then((result) => {
-        // Update state with the result.
-        return this.setState({ storageValue: result.c[0] })
-      })
     })
   }
 

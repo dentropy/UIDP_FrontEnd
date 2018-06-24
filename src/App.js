@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import SimpleStorageContract from '../build/contracts/SimpleStorage.json'
+import IdentityContract from '../build/contracts/Identity.json';
 import getWeb3 from './utils/getWeb3'
 import AppBarExampleIcon from './AppBarExampleIcon';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TabsSwipeable from './TabsSwipeable';
-import TabsControlled from './TabsControlled';
 import ListSimple from './ListSimple';
 import './css/oswald.css'
 import './css/open-sans.css'
@@ -32,12 +32,34 @@ class App extends Component {
       })
 
       // Instantiate contract once web3 provided.
-      this.instantiateContract()
+      //this.instantiateContract()
+      // this.instanceIdentity()
     })
     .catch(() => {
       console.log('Error finding web3.')
     })
   }
+
+  instanceIdentity() {
+    const contract = require('truffle-contract');
+    const identity = contract(IdentityContract);
+    identity.setProvider(this.state.web3.currentProvider);
+    var identityInstance
+    // Get accounts.
+    this.state.web3.eth.getAccounts((error, accounts) => {
+
+      identity.deployed().then((instance) => {
+        identityInstance = instance;
+        // Stores a given value, 5 by default.
+        return identityInstance.set(5, {from: accounts[0]})
+      }).then((result) => {
+        // Get the value from the contract to prove it worked.
+        return identityInstance.get.call(accounts[0])
+      }).then((result) => {
+        return this.setState({ storageValue: result.c[0] })
+      })
+  })
+}
 
   instantiateContract() {
     /*
@@ -76,8 +98,10 @@ class App extends Component {
       <MuiThemeProvider>
       <div className="App">
         <AppBarExampleIcon />
-        <ListSimple />
-        <TabsSwipeable />
+        <div style={{ display: 'flex', backgroundColor: '#EEE' }}>
+          <ListSimple />
+          <TabsSwipeable />
+        </div>
         {/* <nav className="navbar pure-menu pure-menu-horizontal">
             <a href="#" className="pure-menu-heading pure-menu-link">Truffle Box</a>
         </nav>
@@ -94,6 +118,7 @@ class App extends Component {
             </div>
           </div>
         </main> */}
+        {this.state.storageValue}
       </div>
       </MuiThemeProvider>
     );

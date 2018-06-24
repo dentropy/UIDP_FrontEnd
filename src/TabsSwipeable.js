@@ -33,7 +33,7 @@ const styles = {
   
     render() {
       return (
-        <div>
+        <div style={{ width: '100%', margin: '40px' }}>
           <Tabs
             onChange={this.handleChange}
             value={this.state.slideIndex}
@@ -46,7 +46,7 @@ const styles = {
             index={this.state.slideIndex}
             onChangeIndex={this.handleChange}
           >
-            <div>
+            <div style={{ margin: '0 10px' }}>
               <h2 style={styles.headline}>Tabs with slide effect</h2>
               Swipe to see the next slide.<br />
             </div>

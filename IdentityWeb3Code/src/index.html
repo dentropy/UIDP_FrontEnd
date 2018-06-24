@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+
+<body>
+    <h1>Hello World</h1>
+
+    <script src="http://192.168.0.19:3042/ContractSpec.js" charset="utf-8" type="text/javascript">
+    </script>
+
+
+    <script src="http://192.168.0.19:3042/CredentialsObject.js" charset="utf-8" type="text/javascript">
+    </script>
+
+    <script>
+        var IdentityContract = web3.eth.contract(ContractSpec.abi).at(ContractSpec.address);
+        setTimeout(function () {
+            console.log(web3.eth.coinbase);
+            var IdentityContract = web3.eth.contract(ContractSpec.abi).at(ContractSpec.address);
+            GetIdentities();
+        }, 1000);
+    </script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+
+<body>
+    <h1>Create Identity 001</h1>
+    <script src="http://192.168.0.19:3042/ContractSpec.js" charset="utf-8" type="text/javascript">
+    </script>
+
+    <script>
+        var IdentityContract = web3.eth.contract(ContractSpec.abi).at(ContractSpec.address);
+
+        IdentityContract.createIdentity('0x12341234123412341234123412341234', function (err, result) {
+            console.log(result)
+        })
+
+        IdentityContract.validIdentityKeys('0x12341234123412341234123412341234', function (err, result) {
+            console.log(result)
+        })
+
+        IdentityContract.setEmail("0x12341234123412341234123412341234", 0, "bob@aol.com", function (err, result) {
+            console.log(result)
+        })
+
+        IdentityContract.email("0x12341234123412341234123412341234", function (err, result) {
+            console.log(result)
+        })
+    </script>
+</body>
+
+</html>

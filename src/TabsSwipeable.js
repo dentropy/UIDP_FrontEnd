@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Tabs, Tab} from 'material-ui/Tabs';
 // From https://github.com/oliviertassinari/react-swipeable-views
 import SwipeableViews from 'react-swipeable-views';
+import CardExpandable from './CardExpandable';
 
 const styles = {
     headline: {
@@ -46,8 +47,9 @@ const styles = {
             onChangeIndex={this.handleChange}
           >
             <div style={{ margin: '0 10px' }}>
-              <h2 style={styles.headline}>Tabs with slide effect</h2>
-              Swipe to see the next slide.<br />
+              <h2 style={styles.headline}>Manage your Identity</h2>
+              <CardExpandable />
+              <CardExpandable />
             </div>
             <div style={styles.slide}>
               slide n°2

@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import SimpleStorageContract from '../build/contracts/SimpleStorage.json'
 import IdentityContract from '../build/contracts/Identity.json';
 import getWeb3 from './utils/getWeb3'
-import AppBarIcon from './AppBarIcon';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TabsSwipeable from './TabsSwipeable';
 import ListSimple from './ListSimple';
 import Toolbar from './ToolbarSimple';
+import Details from './Details';
+import Credentials from './Credentials';
+import Marketplace from './Marketplace';
 import './css/oswald.css'
 import './css/open-sans.css'
 import './css/pure-min.css'
@@ -96,13 +99,17 @@ class App extends Component {
 
   render() {
     return (
+      <Router basename="/">
       <MuiThemeProvider>        
       <div className="App">
         <Toolbar />
-        {/* <AppBarIcon /> */}
         <div style={{ display: 'flex', backgroundColor: '#EEE' }}>
           <ListSimple />
-          <TabsSwipeable />
+          <Switch>
+              <Route exact path="/" component={Details} />
+              <Route exact path="/credentials" component={Credentials} />
+              <Route exact path="/marketplace" component={Marketplace} />
+          </Switch>
         </div>
         {/* <nav className="navbar pure-menu pure-menu-horizontal">
             <a href="#" className="pure-menu-heading pure-menu-link">Truffle Box</a>
@@ -120,9 +127,9 @@ class App extends Component {
             </div>
           </div>
         </main> */}
-        {this.state.storageValue}
       </div>
       </MuiThemeProvider>
+      </Router>
     );
   }
 }

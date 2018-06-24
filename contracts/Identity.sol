@@ -1,8 +1,8 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.16;
 
 contract Identity {
 
-    uint storedData;
+
     //Structs
     struct identityTokenStruct {
         string verifiedHASH;
@@ -19,12 +19,22 @@ contract Identity {
     //Mappings
     mapping (address => bytes32[]) public publicKeyToIdentity;
     mapping (bytes32 => string) public email;
-    mapping (bytes32 => string) public PGPKey;
+    mapping (bytes32 => string) public IPFSDomain;
     mapping (bytes32 => bool) public validIdentityKeys;
     mapping (bytes32 => identityAddress[]) public identities;
 
     //User, Issuer, Certification ID
     mapping (bytes32 => mapping(bytes32 => mapping(bytes16 => identityTokenStruct))) public identityToken;
+
+
+    /*
+        Add the ability to look up credentials easily from a 
+    */
+    struct IndividualCredential {
+        bytes32 from;
+        bytes16 name;
+    }
+    mapping (bytes32 => IndividualCredential[]) public IndividualCredentials;
 
 
     //This stuct maps to metadata or IPFS hash that explains what the token is about for people who do not know what the token is
@@ -35,14 +45,8 @@ contract Identity {
     constructor() public {
         admin = msg.sender;
     }
-    
-    function set(uint x) public {
-        storedData = x;
-    }
 
-    function get() public view returns (uint) {
-        return storedData;
-    }
+    
     function createIdentity (bytes32 _identityKey) 
         public returns (bool) {
         if(validIdentityKeys[_identityKey] == false){
@@ -55,6 +59,8 @@ contract Identity {
             return(false);
         }
     }
+
+
     function addPublicKey (bytes32 _userID, uint16 _position, address newPublicKey) 
         public returns(bool) {
         if(identities[_userID][_position].accountAddress == msg.sender && identities[_userID][_position].valid == true){
@@ -66,10 +72,12 @@ contract Identity {
             return(false);
         }
     }
-    function addRawPGPKey (bytes32 _userID, uint16 _position, string _PGPKey) 
+
+
+    function addIPFSDomain (bytes32 _userID, uint16 _position, string _IPFSDomain) 
         public returns (bool) {
         if(identities[_userID][_position].accountAddress == msg.sender && identities[_userID][_position].valid == true){
-            PGPKey[_userID] = _PGPKey;
+            IPFSDomain[_userID] = _IPFSDomain;
             return (true);
         }
         else {
@@ -82,7 +90,10 @@ contract Identity {
         public returns (bool) {
         if(identities[_userID][_position].accountAddress == msg.sender && identities[_userID][_position].valid == true){
             identityToken[_issueIDTo][_userID][tokenID] = identityTokenStruct(_verifiedHASH, _encryptedIPFSLink, _validity, false);
+            IndividualCredentials[_userID].push(IndividualCredential(_issueIDTo, tokenID)); 
+            return true;
         }
+        return false;
     }
 
 

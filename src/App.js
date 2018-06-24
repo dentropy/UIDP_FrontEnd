@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import SimpleStorageContract from '../build/contracts/SimpleStorage.json'
 import IdentityContract from '../build/contracts/Identity.json';
 import getWeb3 from './utils/getWeb3'
-import AppBarExampleIcon from './AppBarExampleIcon';
+import AppBarIcon from './AppBarIcon';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TabsSwipeable from './TabsSwipeable';
 import ListSimple from './ListSimple';
+import Toolbar from './ToolbarSimple';
 import './css/oswald.css'
 import './css/open-sans.css'
 import './css/pure-min.css'
@@ -95,9 +96,10 @@ class App extends Component {
 
   render() {
     return (
-      <MuiThemeProvider>
+      <MuiThemeProvider>        
       <div className="App">
-        <AppBarExampleIcon />
+        <Toolbar />
+        {/* <AppBarIcon /> */}
         <div style={{ display: 'flex', backgroundColor: '#EEE' }}>
           <ListSimple />
           <TabsSwipeable />

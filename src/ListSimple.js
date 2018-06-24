@@ -8,12 +8,12 @@ import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 import Divider from 'material-ui/Divider';
 import ActionInfo from 'material-ui/svg-icons/action/info';
 
-const ListSimple = () => (
-  <div>
-    <List>
-      <ListItem primaryText="Inbox" leftIcon={<ContentInbox />} />
-      <ListItem primaryText="Starred" leftIcon={<ActionGrade />} />
-      <ListItem primaryText="Sent mail" leftIcon={<ContentSend />} />
+const ListSimple = () => (  
+  <div >
+    <List style={{ width: "225px"}}>
+      <ListItem primaryText="Details" leftIcon={<ContentInbox />} />
+      <ListItem primaryText="Credentials" leftIcon={<ActionGrade />} />
+      <ListItem primaryText="Marketplace" leftIcon={<ContentSend />} />
     </List>
   </div>
 );

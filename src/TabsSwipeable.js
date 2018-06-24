@@ -3,7 +3,6 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 // From https://github.com/oliviertassinari/react-swipeable-views
 import SwipeableViews from 'react-swipeable-views';
 
-
 const styles = {
     headline: {
       fontSize: 24,
@@ -33,14 +32,14 @@ const styles = {
   
     render() {
       return (
-        <div style={{ width: '100%', margin: '40px' }}>
+        <div style={{ width: '100%' }}>
           <Tabs
             onChange={this.handleChange}
             value={this.state.slideIndex}
           >
-            <Tab label="Tab One" value={0} />
-            <Tab label="Tab Two" value={1} />
-            <Tab label="Tab Three" value={2} />
+            <Tab label="Personal" value={0} />
+            <Tab label="Health" value={1} />
+            <Tab label="Wealth" value={2} />
           </Tabs>
           <SwipeableViews
             index={this.state.slideIndex}

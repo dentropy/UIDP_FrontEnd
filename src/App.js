@@ -6,6 +6,7 @@ import getWeb3 from './utils/getWeb3'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TabsSwipeable from './TabsSwipeable';
 import ListSimple from './ListSimple';
+import DialogScrollable from './DialogScrollable';
 import Toolbar from './ToolbarSimple';
 import Details from './Details';
 import Credentials from './Credentials';
@@ -105,6 +106,8 @@ class App extends Component {
         <Toolbar />
         <div style={{ display: 'flex', backgroundColor: '#EEE' }}>
           <ListSimple />
+          <DialogScrollable />
+      
           <Switch>
               <Route exact path="/" component={Details} />
               <Route exact path="/credentials" component={Credentials} />

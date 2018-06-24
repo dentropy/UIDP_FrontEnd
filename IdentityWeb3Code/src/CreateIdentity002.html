@@ -27,6 +27,15 @@
         IdentityContract.email("0x2345234523452345234523452345236", function (err, result) {
             console.log(result)
         })
+
+        IdentityContract.addIPFSDomain("0x2345234523452345234523452345236", 0,
+            "QmdPtC3T7Kcu9iJg6hYzLBWR5XCDcYMY7HV685E3kH3EcS",
+            function (err, result) {
+                console.log(result)
+            })
+        IdentityContract.IPFSDomain("0x2345234523452345234523452345236", function (err, result) {
+            console.log(result)
+        })
     </script>
 </body>
 

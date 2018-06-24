@@ -1,79 +1,29 @@
 var CredentialsObject = [];
 
 function GetIdentities() {
-    for (var i = 0; i < 7; i++) {
-        console.log(i);
-        try {
-            IdentityContract.publicKeyToIdentity(web3.eth.coinbase, i, function (err, result) {
-                if (!err) {
-                    CredentialsObject.push({
-                        id: result
-                    })
-                    GetMetaData(i, result)
-                    LookupCredentials(i, result);
-                }
-                console.log(result);
+    IdentityContract.publicKeyToIdentity(web3.eth.coinbase, 0, function (err, result) {
+        if (!err) {
+            CredentialsObject.push({
+                id: result.substring(0, result.length - 33)
             })
-        } catch (err) {
-            console.log(err);
-            console.log("Caught the Error")
+            GetMetaData(result)
+            LookupCredentials(result);
         }
-    }
+        console.log("ID is " + result);
+    })
 }
 
-function GetMetaData(tmpi, tmpID) {
-    setTimeout(function () {
-        try {
-            //your code to be executed after 1 second
-            console.log("Getting Metadata")
-            IdentityContract.email(tmpID, function (err, result) {
-                console.log(result)
-                CredentialsObject[tmpi].email = result
-            })
-        } catch (err) {
-            console.log(err);
-            console.log("Caught the Error")
-        }
-        try {
-            //your code to be executed after 1 second
-            console.log("Getting Metadata")
-            IdentityContract.IPFSDomain(tmpID, function (err, result) {
-                console.log(result)
-                CredentialsObject[tmpi].IPFSDomain = result
-            })
-        } catch (err) {
-            console.log(err);
-            console.log("Caught the Error")
-        }
-    }, 1000);
-}
-
-
-
-
-function GetMetaData(tmpi, tmpID) {
-    setTimeout(function () {
-        try {
-            //your code to be executed after 1 second
-            console.log("Getting Metadata")
-            IdentityContract.email(tmpID, function (err, result) {
-                console.log(result)
-                CredentialsObject[tmpi].email = result
-            })
-        } catch (err) {
-            console.log(err);
-            console.log("Caught the Error")
-        }
-        try {
-            //your code to be executed after 1 second
-            console.log("Getting Metadata")
-            IdentityContract.IPFSDomain(tmpID, function (err, result) {
-                console.log(result)
-                CredentialsObject[tmpi].IPFSDomain = result
-            })
-        } catch (err) {
-            console.log(err);
-            console.log("Caught the Error")
-        }
-    }, 1000);
+function GetMetaData(tmpID) {
+    //your code to be executed after 1 second
+    console.log("Getting Metadata")
+    IdentityContract.email(CredentialsObject[0].id, function (err, result) {
+        console.log(result)
+        CredentialsObject[0].email = result
+    })
+    //your code to be executed after 1 second
+    console.log("Getting Metadata")
+    IdentityContract.IPFSDomain(CredentialsObject[0].id, function (err, result) {
+        console.log(result)
+        CredentialsObject[0].IPFSDomain = result
+    })
 }

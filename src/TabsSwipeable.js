@@ -52,10 +52,10 @@ const styles = {
               <CardExpandable />
             </div>
             <div style={styles.slide}>
-              slide n°2
+              Here you can find your Health Credentials.
             </div>
             <div style={styles.slide}>
-              slide n°3
+              Here you can find your Wealth Credentials.
             </div>
           </SwipeableViews>
         </div>

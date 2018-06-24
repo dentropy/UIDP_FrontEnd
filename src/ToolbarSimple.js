@@ -24,7 +24,7 @@ export default class ToolbarSimple extends React.Component {
       <Toolbar>
         <ToolbarGroup firstChild={true}>
           <div style={{ width: "200"}}>
-            <ToolbarTitle text="Logo" />
+            <ToolbarTitle text="BRM" style={{ marginLeft: '20px' }} />
             <FontIcon className="muidocs-icon-custom-sort" />
           </div>
           <ToolbarSeparator />
